@@ -62,7 +62,7 @@ class TestCalculator:
         :return: 断言结果
         """
         with pytest.raises(Exception) as e:
-            self.calc.add(div1, div2)
+            self.calc.div(div1, div2)
         assert str(expect) in str(e)
 
     @pytest.mark.parametrize('div1, div2, expect', datas['div_fail']['data0'])
@@ -75,11 +75,11 @@ class TestCalculator:
         :return: 断言结果
         """
         with pytest.raises(ZeroDivisionError) as e:
-            self.calc.add(div1, div2)
+            self.calc.div(div1, div2)
         assert str(expect) in str(e)
 
 """
-两个坑未解决：
+2个坑未解决：
 1.无限不循环小数断言
-2.除数为0的异常捕获不到，报错提示 Failed: DID NOT RAISE <class 'ZeroDivisionError'>
+2.除数为0的异常捕获不到，报错提示 Failed: DID NOT RAISE <class 'ZeroDivisionError'> --->已解决（粗心导致）
 """

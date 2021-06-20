@@ -27,10 +27,10 @@ class Calculator:
             raise Exception(f'must be int or float: {a}')
         if not isinstance(b, (int, float)):
             raise Exception(f'must be int or float: {a}')
-        # if b != 0:
-        div_result = Decimal(str(a)) / Decimal(str(b))
-        # else:
-        #     raise ZeroDivisionError(f'除数不能为0: 除数={b}')
+        if b != 0:
+            div_result = Decimal(str(a)) / Decimal(str(b))
+        else:
+            raise ZeroDivisionError(f'除数不能为0: 除数={b}')
         return str(div_result)
 
 if __name__ == '__main__':
