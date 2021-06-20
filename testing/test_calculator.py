@@ -2,6 +2,7 @@ import logging
 import pytest
 from pythoncode.calculaltor import Calculator
 from testing.datas.get_data import ReadFile
+from decimal import *
 
 readfile = ReadFile()
 datas = readfile.getData()
@@ -78,8 +79,21 @@ class TestCalculator:
             self.calc.div(div1, div2)
         assert str(expect) in str(e)
 
+    @pytest.mark.parametrize('div1, div2, expect', datas['div_success']['dataic'])
+    def test_divic(self, div1, div2, expect):
+        """
+        单元测试除法运算，无限循环的情况
+        :param div1: 被除数
+        :param div2: 除数
+        :param expect: 预期结果为无限循环小数并保留8位小数（四舍五入）
+        :return: 断言结果
+        """
+        div_result = self.calc.div(div1, div2)
+        # 把str结果转化成Decimal格式，并保留8位小数（可四舍五入）以修正无限循环小数无法断言问题
+        result = Decimal(div_result).quantize(Decimal('0.00000000'))
+        assert str(expect) == str(result)
 """
 2个坑未解决：
-1.无限不循环小数断言
+1.无限不循环小数断言 --->已解决（利用decimal的内置方法）
 2.除数为0的异常捕获不到，报错提示 Failed: DID NOT RAISE <class 'ZeroDivisionError'> --->已解决（粗心导致）
 """
