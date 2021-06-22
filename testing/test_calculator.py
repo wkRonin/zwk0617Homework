@@ -73,8 +73,8 @@ class TestCalculator:
     @allure.title("{div_fail_data[0]} / {div_fail_data[1]}")
     def test_div_exception(self, div_fail_data, setup_class):
         """
-        单元测试加法运算，预期异常
-        :param div_fail_data:加法的参数化异常数据
+        单元测试除法运算，预期异常
+        :param div_fail_data:除法的参数化异常数据
         :param setup_class: 实例化计算器代码
         :return: 断言结果
         """
@@ -88,8 +88,8 @@ class TestCalculator:
     @allure.title("{div_zero_data[0]} / {div_zero_data[1]}")
     def test_div_zero(self, div_zero_data, setup_class):
         """
-        单元测试加法运算，预期异常
-        :param div_zero_data:加法的参数化异常数据
+        单元测试除法运算，预期异常
+        :param div_zero_data:除法的参数化异常数据
         :param setup_class: 实例化计算器代码
         :return: 断言结果
         """
