@@ -1,99 +1,116 @@
 import logging
+import shutil
 import pytest
-from pythoncode.calculaltor import Calculator
-from testing.datas.get_data import ReadFile
+import allure
+import os
 from decimal import *
 
-readfile = ReadFile()
-datas = readfile.getData()
 
+@allure.feature("计算器测试用例")
 class TestCalculator:
-    def setup_class(self):
-        self.calc = Calculator()
 
-    def setup(self):
-        logging.info("开始计算")
-
-    def teardown(self):
-        logging.info("结束计算")
-
-    @pytest.mark.parametrize('add1, add2, expect', datas['add_success']['datas'])
-    def test_add(self, add1, add2, expect):
+    @allure.story("正常数据的加法")
+    @allure.title("{add_success_data[0]} + {add_success_data[1]}")
+    def test_add(self, add_success_data, setup_class):
         """
-        单元测试加法运算，预期成功
-        :param add1: 第一个加数
-        :param add2: 第二个加数
-        :param expect: 预期结果
+        单元测试加法运算，预期正常
+        :param add_success_data:加法的参数化正常数据
+        :param setup_class: 实例化计算器代码
         :return: 断言结果
         """
-        assert str(expect) == self.calc.add(add1, add2)
+        add1, add2, expect = add_success_data
+        with allure.step(f'执行计算 {add1} + {add2}'):
+            logging.info(f'执行计算 : {add1} + {add2} = {expect}')
+            assert str(expect) == str(setup_class.add(add1, add2))
 
-    @pytest.mark.parametrize('add1, add2, expect', datas['add_fail']['datas'])
-    def test_addexc(self, add1, add2, expect):
+    @allure.story("异常数据的加法")
+    @allure.title("{add_fail_data[0]} + {add_fail_data[1]}")
+    def test_add_exception(self, add_fail_data, setup_class):
         """
         单元测试加法运算，预期异常
-        :param add1: 第一个加数
-        :param add2: 第二个加数
-        :param expect: 预期结果
+        :param add_fail_data:加法的参数化异常数据
+        :param setup_class: 实例化计算器代码
         :return: 断言结果
         """
-        with pytest.raises(Exception) as e:
-            self.calc.add(add1, add2)
-        assert str(expect) in str(e)
+        add1, add2, expect = add_fail_data
+        with allure.step(f'执行计算 {add1} + {add2}'):
+            logging.info(f'执行计算 : {add1} + {add2} = {expect}')
+            with pytest.raises(Exception):
+                setup_class.add(add1, add2)
 
-
-    @pytest.mark.parametrize('div1, div2, expect', datas['div_success']['datas'])
-    def test_div(self, div1, div2, expect):
+    @allure.story("正常数据的除法")
+    @allure.title("{div_success_data[0]} + {div_success_data[1]}")
+    def test_div(self, div_success_data, setup_class):
         """
-        单元测试除法运算
-        :param div1: 被除数
-        :param div2: 除数
-        :param expect: 预期结果
+        单元测试除法运算，预期正常
+        :param div_success_data:除法的参数化正常数据
+        :param setup_class: 实例化计算器代码
         :return: 断言结果
         """
-        assert str(expect) == self.calc.div(div1, div2)
+        div1, div2, expect = div_success_data
+        with allure.step(f'执行计算 {div1} / {div2}'):
+            logging.info(f'执行计算 : {div1} / {div2} = {expect}')
+            assert str(expect) == str(setup_class.div(div1, div2))
 
-    @pytest.mark.parametrize('div1, div2, expect', datas['div_fail']['datas'])
-    def test_divexc(self, div1, div2, expect):
+    @allure.story("正常数据的除法")
+    @allure.title("{div_ic_data[0]} + {div_ic_data[1]}")
+    def test_div_ic(self, div_ic_data, setup_class):
         """
-        单元测试除法运算,预期异常
-        :param div1: 被除数
-        :param div2: 除数
-        :param expect: 预期结果
+        单元测试除法运算，预期无限循环
+        :param div_ic_data:商为无限循环的除法参数化数据
+        :param setup_class: 实例化计算器代码
         :return: 断言结果
         """
-        with pytest.raises(Exception) as e:
-            self.calc.div(div1, div2)
-        assert str(expect) in str(e)
-
-    @pytest.mark.parametrize('div1, div2, expect', datas['div_fail']['data0'])
-    def test_divexc0(self, div1, div2, expect):
-        """
-        单元测试除法运算,预期除数不能为0的异常
-        :param div1: 被除数
-        :param div2: 除数
-        :param expect: 预期结果
-        :return: 断言结果
-        """
-        with pytest.raises(ZeroDivisionError) as e:
-            self.calc.div(div1, div2)
-        assert str(expect) in str(e)
-
-    @pytest.mark.parametrize('div1, div2, expect', datas['div_success']['dataic'])
-    def test_divic(self, div1, div2, expect):
-        """
-        单元测试除法运算，无限循环的情况
-        :param div1: 被除数
-        :param div2: 除数
-        :param expect: 预期结果为无限循环小数并保留8位小数（四舍五入）
-        :return: 断言结果
-        """
-        div_result = self.calc.div(div1, div2)
+        div1, div2, expect = div_ic_data
+        div_result = setup_class.div(div1, div2)
         # 把str结果转化成Decimal格式，并保留8位小数（可四舍五入）以修正无限循环小数无法断言问题
         result = Decimal(div_result).quantize(Decimal('0.00000000'))
-        assert str(expect) == str(result)
-"""
-2个坑未解决：
-1.无限不循环小数断言 --->已解决（利用decimal的内置方法）
-2.除数为0的异常捕获不到，报错提示 Failed: DID NOT RAISE <class 'ZeroDivisionError'> --->已解决（粗心导致）
-"""
+        with allure.step(f'执行计算 {div1} / {div2}'):
+            logging.info(f'执行计算 : {div1} / {div2} = {expect}')
+            assert str(expect) == str(result)
+
+    @allure.story("异常数据的除法")
+    @allure.title("{div_fail_data[0]} / {div_fail_data[1]}")
+    def test_div_exception(self, div_fail_data, setup_class):
+        """
+        单元测试加法运算，预期异常
+        :param div_fail_data:加法的参数化异常数据
+        :param setup_class: 实例化计算器代码
+        :return: 断言结果
+        """
+        div1, div2, expect = div_fail_data
+        with allure.step(f'执行计算 {div1} / {div2}'):
+            logging.info(f'执行计算 : {div1} / {div2} = {expect}')
+            with pytest.raises(Exception):
+                setup_class.div(div1, div2)
+
+    @allure.story("异常数据的除法")
+    @allure.title("{div_zero_data[0]} / {div_zero_data[1]}")
+    def test_div_zero(self, div_zero_data, setup_class):
+        """
+        单元测试加法运算，预期异常
+        :param div_zero_data:加法的参数化异常数据
+        :param setup_class: 实例化计算器代码
+        :return: 断言结果
+        """
+        div1, div2, expect = div_zero_data
+        with allure.step(f'执行计算 {div1} / {div2}'):
+            logging.info(f'执行计算 : {div1} / {div2} = {expect}')
+            with pytest.raises(ZeroDivisionError):
+                setup_class.div(div1, div2)
+
+
+if __name__ == '__main__':
+    if os.path.exists('report/'):
+        shutil.rmtree(path='report/')
+    pytest.main(
+        args=[
+            'testing/',
+            '-v',
+            # '-n=2',
+            f'--alluredir=report/data'])
+    # 自动以服务形式打开报告
+    # os.system(f'allure serve ./report/data')
+
+    # 本地生成报告
+    os.system(f'allure generate ./report/data -o report/html --clean')

@@ -33,6 +33,7 @@ class Calculator:
             raise ZeroDivisionError(f'除数不能为0: 除数={b}')
         return str(div_result)
 
+
 if __name__ == '__main__':
     calc = Calculator()
 

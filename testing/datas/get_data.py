@@ -1,5 +1,6 @@
 import yaml
 
+
 class ReadFile:
     data_dict = None
 

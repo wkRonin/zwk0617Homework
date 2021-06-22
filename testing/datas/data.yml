@@ -50,5 +50,6 @@ div_fail:
     - [ 0, '@', 'Exception' ]
     - [ ' ', 2, 'Exception' ]
     - [ -2, ' ', 'Exception' ]
-  data0:
+  datazero:
     - [99, 0, 'ZeroDivisionError']
+    - [-98, 0, 'ZeroDivisionError']
