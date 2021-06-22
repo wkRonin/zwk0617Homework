@@ -1,0 +1,3 @@
+INFO     root:conftest.py:24 开始计算
+INFO     root:test_calculator.py:52 执行计算 : 2 / 80 = 0.025
+INFO     root:conftest.py:26 结束计算

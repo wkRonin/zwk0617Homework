@@ -1,0 +1,3 @@
+INFO     root:conftest.py:24 开始计算
+INFO     root:test_calculator.py:83 执行计算 : -0.2 / string = Exception
+INFO     root:conftest.py:26 结束计算

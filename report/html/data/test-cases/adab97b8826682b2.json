@@ -1,0 +1,159 @@
+{
+  "uid" : "adab97b8826682b2",
+  "name" : "-99 + 0",
+  "fullName" : "testing.test_calculator.TestCalculator#test_add",
+  "historyId" : "50c82a8c5b22935dbd85418170bea664",
+  "time" : {
+    "start" : 1624373024435,
+    "stop" : 1624373024435,
+    "duration" : 0
+  },
+  "description" : "\n        单元测试加法运算，预期正常\n        :param add_success_data:加法的参数化正常数据\n        :param setup_class: 实例化计算器代码\n        :return: 断言结果\n        ",
+  "descriptionHtml" : "<pre><code>    单元测试加法运算，预期正常\n    :param add_success_data:加法的参数化正常数据\n    :param setup_class: 实例化计算器代码\n    :return: 断言结果\n</code></pre>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "add_success_data",
+    "time" : {
+      "start" : 1624373024435,
+      "stop" : 1624373024435,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  }, {
+    "name" : "setup_class",
+    "time" : {
+      "start" : 1624373024388,
+      "stop" : 1624373024389,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  }, {
+    "name" : "setup_teardown",
+    "time" : {
+      "start" : 1624373024434,
+      "stop" : 1624373024435,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "\n        单元测试加法运算，预期正常\n        :param add_success_data:加法的参数化正常数据\n        :param setup_class: 实例化计算器代码\n        :return: 断言结果\n        ",
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "执行计算 -99 + 0",
+      "time" : {
+        "start" : 1624373024435,
+        "stop" : 1624373024435,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 0,
+      "hasContent" : false
+    } ],
+    "attachments" : [ {
+      "uid" : "41ca3a129eefb88f",
+      "name" : "log",
+      "source" : "41ca3a129eefb88f.txt",
+      "type" : "text/plain",
+      "size" : 148
+    } ],
+    "parameters" : [ ],
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 1,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "setup_teardown::0",
+    "time" : {
+      "start" : 1624373024436,
+      "stop" : 1624373024436,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "feature",
+    "value" : "计算器测试用例"
+  }, {
+    "name" : "story",
+    "value" : "正常数据的加法"
+  }, {
+    "name" : "parentSuite",
+    "value" : "testing"
+  }, {
+    "name" : "suite",
+    "value" : "test_calculator"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestCalculator"
+  }, {
+    "name" : "host",
+    "value" : "MS-DPHROIDQRVFN"
+  }, {
+    "name" : "thread",
+    "value" : "10556-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "testing.test_calculator"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "add_success_data",
+    "value" : "[-99, 0, -99]"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "adab97b8826682b2.json",
+  "parameterValues" : [ "[-99, 0, -99]" ]
+}

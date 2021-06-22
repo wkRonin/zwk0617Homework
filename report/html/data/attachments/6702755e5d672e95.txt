@@ -1,0 +1,4 @@
+INFO     root:conftest.py:36 计算器实例化完成
+INFO     root:conftest.py:24 开始计算
+INFO     root:test_calculator.py:23 执行计算 : 0 + 0 = 0
+INFO     root:conftest.py:26 结束计算
